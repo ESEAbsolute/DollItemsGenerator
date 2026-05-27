@@ -95,7 +95,7 @@ const MODEL_SAMPLE_POINTS = [
 let presetCatalogPromise: Promise<ModelPresetCatalog> | null = null
 
 export const DEFAULT_MODEL_TYPE_ID = 'holding_item'
-export const DEFAULT_DEMO_SKIN_URL = '/skins/default-alex-skin.png'
+export const DEFAULT_DEMO_SKIN_PATH = 'skins/default-alex-skin.png'
 export const DEFAULT_TOTEM_OVERRIDE_TEXT = JSON.stringify(
   {
     model: {
@@ -137,14 +137,15 @@ export function createEmptyRow(defaultModelTypeId: string | null = DEFAULT_MODEL
 }
 
 export function createDemoRow(defaultModelTypeId: string = DEFAULT_MODEL_TYPE_ID): ItemRowData {
+  const demoSkinUrl = getAppAssetUrl(DEFAULT_DEMO_SKIN_PATH)
   return {
     ...createEmptyRow(defaultModelTypeId),
     itemId: 'minecraft:totem_of_undying',
     skinModel: 'alex',
     skinSource: 'builtin',
     skinFileName: 'default-alex-skin.png',
-    skinPreviewUrl: DEFAULT_DEMO_SKIN_URL,
-    skinAssetUrl: DEFAULT_DEMO_SKIN_URL,
+    skinPreviewUrl: demoSkinUrl,
+    skinAssetUrl: demoSkinUrl,
     serverOverrideName: 'totem_of_undying.json',
     serverOverrideText: DEFAULT_TOTEM_OVERRIDE_TEXT,
     inferredModel: 'alex'
@@ -419,7 +420,7 @@ function extractReplacementModelNode(replacementModel: JsonObject): JsonObject {
 }
 
 async function fetchModelPresetCatalog(): Promise<ModelPresetCatalog> {
-  const response = await fetch('/model-presets.json')
+  const response = await fetch(getAppAssetUrl('model-presets.json'))
   if (!response.ok) {
     throw new Error('无法读取人偶模型预设配置。')
   }
@@ -428,7 +429,7 @@ async function fetchModelPresetCatalog(): Promise<ModelPresetCatalog> {
   const presets = Object.entries(raw).map(([templateType, definition]) => {
     return {
       id: templateType,
-      previewImage: `/previews/${templateType}.png`,
+      previewImage: getAppAssetUrl(`previews/${templateType}.png`),
       declaration: definition.declaration,
       generation: definition.generation
     }
@@ -443,7 +444,7 @@ async function fetchModelPresetCatalog(): Promise<ModelPresetCatalog> {
 }
 
 async function fetchPackTemplateFiles() {
-  const manifestResponse = await fetch('/pack_template/manifest.json')
+  const manifestResponse = await fetch(getAppAssetUrl('pack_template/manifest.json'))
   if (!manifestResponse.ok) {
     throw new Error('无法读取 pack_template 资源清单。')
   }
@@ -453,7 +454,7 @@ async function fetchPackTemplateFiles() {
 
   await Promise.all(
     manifest.map(async (relativePath) => {
-      const response = await fetch(`/pack_template/${relativePath}`)
+      const response = await fetch(getAppAssetUrl(`pack_template/${relativePath}`))
       if (!response.ok) {
         throw new Error(`无法读取模板文件：${relativePath}`)
       }
@@ -584,4 +585,13 @@ function getOverrideModelCandidates(parsed: ParsedItemId) {
   return new Set([
     `${parsed.namespace}:item/${parsed.key}`
   ])
+}
+
+function getAppAssetUrl(path: string) {
+  const runtimeConfig = useRuntimeConfig()
+  const normalizedBase = runtimeConfig.app.baseURL.endsWith('/')
+    ? runtimeConfig.app.baseURL
+    : `${runtimeConfig.app.baseURL}/`
+  const normalizedPath = path.startsWith('/') ? path.slice(1) : path
+  return `${normalizedBase}${normalizedPath}`
 }

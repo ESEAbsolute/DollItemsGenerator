@@ -13,6 +13,7 @@ export function useAppI18n() {
   const currentLocale = useState<AppLocale>('app-locale', () => 'zh_cn')
   const messages = useState<LocaleMessages>('app-locale-messages', () => ({}))
   const initialized = useState<boolean>('app-locale-initialized', () => false)
+  const runtimeConfig = useRuntimeConfig()
 
   const localeOptions = computed(() => {
     return SUPPORTED_LOCALES.map((locale) => ({
@@ -46,7 +47,7 @@ export function useAppI18n() {
   }
 
   const loadLocale = async (locale: AppLocale) => {
-    const response = await fetch(`/locales/${locale}.json`)
+    const response = await fetch(resolveAppAssetUrl(runtimeConfig.app.baseURL, `locales/${locale}.json`))
     if (!response.ok) {
       throw new Error(`无法读取语言文件：${locale}.json`)
     }
@@ -74,4 +75,10 @@ export function useAppI18n() {
     loadLocale,
     t
   }
+}
+
+function resolveAppAssetUrl(baseURL: string, path: string) {
+  const normalizedBase = baseURL.endsWith('/') ? baseURL : `${baseURL}/`
+  const normalizedPath = path.startsWith('/') ? path.slice(1) : path
+  return `${normalizedBase}${normalizedPath}`
 }
