@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     typeCheck: true
   },
   app: {
-    baseURL: '/'
+    baseURL: '/DollItemsGenerator/'
   },
   routeRules: {
     '/': { prerender: true }
