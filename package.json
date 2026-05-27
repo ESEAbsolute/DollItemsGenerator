@@ -1,5 +1,5 @@
 {
-  "name": "DollItemGenerator",
+  "name": "dollitemsgenerator",
   "type": "module",
   "private": true,
   "scripts": {
