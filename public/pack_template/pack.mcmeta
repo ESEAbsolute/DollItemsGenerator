@@ -1,0 +1,9 @@
+﻿{
+  "pack": {
+    "pack_format": 15,
+    "supported_formats": [ 1, 64 ],
+    "min_format": 1,
+    "max_format": 9999,
+    "description":"\u00A76娃娃模型物品。添加更多物品/适配服务器资源包请看 README.md。"
+  }
+}

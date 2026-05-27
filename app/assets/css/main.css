@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background:
+    radial-gradient(circle at top, rgba(16, 185, 129, 0.12), transparent 32%),
+    linear-gradient(180deg, #09090b 0%, #111827 100%);
+}
+
+body {
+  @apply min-h-screen bg-transparent text-zinc-100 antialiased;
+  font-family:
+    "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+}
+
+::selection {
+  background: rgba(16, 185, 129, 0.35);
+  color: #fafafa;
+}
+
+.panel {
+  @apply border border-zinc-800/80 bg-zinc-950/70 shadow-2xl shadow-black/20 backdrop-blur;
+}
+
+.field-shell {
+  @apply rounded-2xl border border-zinc-800 bg-zinc-900/80 px-2.5 py-2 transition-colors focus-within:border-emerald-400/70;
+}
+
+.text-field {
+  @apply w-full bg-transparent text-sm text-zinc-50 placeholder:text-zinc-500 focus:outline-none;
+}
+
+.action-button {
+  @apply inline-flex items-center justify-center rounded-2xl px-3 py-1.5 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.row-cell {
+  @apply relative flex min-h-0 flex-col;
+}
+
+.floating-bubble {
+  @apply relative rounded-[1.75rem] border border-zinc-800 bg-zinc-950/95 shadow-2xl shadow-black/40 backdrop-blur;
+}
+
+.drop-overlay {
+  @apply absolute inset-0 z-10 flex items-center justify-center rounded-[1.5rem] border border-dashed border-emerald-400/70 bg-emerald-400/10 px-4 text-center text-sm font-medium text-emerald-100 backdrop-blur;
+}
+
+.hint-click-button {
+  @apply inline-flex w-full items-center justify-between gap-1.5 rounded-2xl px-2 py-1 text-left transition disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.hint-click-action {
+  @apply flex shrink-0 self-stretch items-center border-l border-zinc-700 pl-2.5 text-xs text-zinc-400;
+}
+
+.json-preview {
+  font-family:
+    "Cascadia Code", "Fira Code", "JetBrains Mono", "SFMono-Regular", Consolas,
+    "Liberation Mono", monospace;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.json-token-key {
+  color: #fda4af;
+}
+
+.json-token-string {
+  color: #86efac;
+}
+
+.json-token-number {
+  color: #93c5fd;
+}
+
+.json-token-boolean {
+  color: #fcd34d;
+}
+
+.json-editor-shell {
+  position: relative;
+  min-height: 60vh;
+}
+
+.json-editor-layer {
+  margin: 0;
+  pointer-events: none;
+}
+
+.json-editor-input {
+  position: absolute;
+  inset: 0;
+  resize: none;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  caret-color: #fafafa;
+  font-family:
+    "Cascadia Code", "Fira Code", "JetBrains Mono", "SFMono-Regular", Consolas,
+    "Liberation Mono", monospace;
+  white-space: pre;
+  overflow-wrap: normal;
+}
+
+.json-editor-input::placeholder {
+  color: #71717a;
+}
+
+.json-editor-input::selection {
+  background: rgba(16, 185, 129, 0.28);
+  color: transparent;
+}

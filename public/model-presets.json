@@ -1,0 +1,68 @@
+{
+  "holding_item": {
+    "declaration": {
+      "model": {
+        "type": "minecraft:model",
+        "model": "playerdollitems:item/{{namespace}}/{{key}}"
+      }
+    },
+    "generation": [
+      {
+        "path": "assets/playerdollitems/models/item/{{namespace}}/{{key}}.json",
+        "content": {
+          "parent": "playerdollitems:template/{{skinType}}/{{templateType}}",
+          "textures": {
+            "skin": "playerdollitems:item/doll/{{skinType}}_{{assetStem}}",
+            "item": "{{namespace}}:item/{{key}}"
+          }
+        }
+      }
+    ]
+  },
+  "hugging_tool": {
+    "declaration": {
+      "model": {
+        "type": "minecraft:select",
+        "property": "minecraft:display_context",
+        "cases": [
+          {
+            "when": [
+              "firstperson_lefthand",
+              "thirdperson_lefthand"
+            ],
+            "model": {
+              "type": "minecraft:model",
+              "model": "playerdollitems:item/{{namespace}}/{{key}}/offhand"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "playerdollitems:item/{{namespace}}/{{key}}/mainhand"
+        }
+      }
+    },
+    "generation": [
+      {
+        "path": "assets/playerdollitems/models/item/{{namespace}}/{{key}}/mainhand.json",
+        "content": {
+          "parent": "playerdollitems:template/{{skinType}}/{{templateType}}/mainhand",
+          "textures": {
+            "skin": "playerdollitems:item/doll/{{skinType}}_{{assetStem}}",
+            "tool": "{{namespace}}:item/{{key}}"
+          }
+        }
+      },
+      {
+        "path": "assets/playerdollitems/models/item/{{namespace}}/{{key}}/offhand.json",
+        "content": {
+          "parent": "playerdollitems:template/{{skinType}}/{{templateType}}/offhand",
+          "textures": {
+            "skin": "playerdollitems:item/doll/{{skinType}}_{{assetStem}}",
+            "tool": "{{namespace}}:item/{{key}}"
+          }
+        }
+      }
+    ]
+  }
+}

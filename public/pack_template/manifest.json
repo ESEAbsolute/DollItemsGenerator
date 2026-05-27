@@ -1,0 +1,12 @@
+﻿[
+    "assets/playerdollitems/models/template/alex/holding_item.json",
+    "assets/playerdollitems/models/template/alex/hugging_tool/mainhand.json",
+    "assets/playerdollitems/models/template/alex/hugging_tool/offhand.json",
+    "assets/playerdollitems/models/template/steve/holding_item.json",
+    "assets/playerdollitems/models/template/steve/hugging_tool/mainhand.json",
+    "assets/playerdollitems/models/template/steve/hugging_tool/offhand.json",
+    "manifest.json",
+    "pack.mcmeta",
+    "pack.png",
+    "README.md"
+]
