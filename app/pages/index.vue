@@ -4,7 +4,6 @@ import type { AppLocale } from '../composables/useAppI18n'
 import { useAppI18n } from '../composables/useAppI18n'
 import type { ItemRowData, ModelPresetCatalog, SkinModel } from '../composables/usePackGenerator'
 import {
-  DEFAULT_DEMO_SKIN_URL,
   DEFAULT_MODEL_TYPE_ID,
   usePackGenerator
 } from '../composables/usePackGenerator'
@@ -45,7 +44,10 @@ onMounted(async () => {
   rows.value = [demoRow]
 
   try {
-    const inferred = await inferSkinModelFromUrl(DEFAULT_DEMO_SKIN_URL)
+    if (!demoRow.skinAssetUrl) {
+      throw new Error('无法读取默认示例皮肤。')
+    }
+    const inferred = await inferSkinModelFromUrl(demoRow.skinAssetUrl)
     demoRow.skinModel = inferred
     demoRow.inferredModel = inferred
   } catch (error) {
