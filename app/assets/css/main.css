@@ -36,6 +36,39 @@ body {
   @apply w-full bg-transparent text-sm text-zinc-50 placeholder:text-zinc-500 focus:outline-none;
 }
 
+.locale-trigger {
+  @apply flex w-full items-center justify-between gap-3 rounded-xl border border-zinc-800/90 bg-zinc-950/85 px-3 py-2 text-sm font-medium text-zinc-100 shadow-inner shadow-black/10 transition;
+}
+
+.locale-trigger:hover {
+  @apply border-zinc-700 bg-zinc-950;
+}
+
+.locale-trigger:focus-visible {
+  @apply border-emerald-400/70 outline-none ring-2 ring-emerald-400/15;
+}
+
+.locale-menu {
+  @apply absolute right-0 z-20 mt-2 w-full overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/95 p-1.5 shadow-2xl shadow-black/40 backdrop-blur;
+}
+
+.locale-option {
+  @apply flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm text-zinc-200 transition;
+}
+
+.locale-option:hover {
+  @apply bg-zinc-900 text-zinc-50;
+}
+
+.locale-option:focus-visible {
+  @apply bg-zinc-900 outline-none ring-2 ring-emerald-400/15;
+}
+
+.locale-option-active {
+  @apply text-emerald-100;
+  background-color: rgba(52, 211, 153, 0.12);
+}
+
 .action-button {
   @apply inline-flex items-center justify-center rounded-2xl px-3 py-1.5 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-60;
 }

@@ -13,6 +13,8 @@ const errorMessage = ref('')
 const isGenerating = ref(false)
 const activeDownloadUrl = ref<string | null>(null)
 const presetCatalog = ref<ModelPresetCatalog | null>(null)
+const localeMenuOpen = ref(false)
+const localeMenuRef = ref<HTMLElement | null>(null)
 const { currentLocale, initI18n, loadLocale, localeOptions, t } = useAppI18n()
 
 const {
@@ -56,9 +58,20 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('pointerdown', handleWindowPointerDown)
+    window.removeEventListener('keydown', handleWindowKeyDown)
+  }
   rows.value.forEach((row) => revokePreviewUrl(row))
   if (activeDownloadUrl.value) {
     URL.revokeObjectURL(activeDownloadUrl.value)
+  }
+})
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    window.addEventListener('pointerdown', handleWindowPointerDown)
+    window.addEventListener('keydown', handleWindowKeyDown)
   }
 })
 
@@ -205,6 +218,33 @@ function toErrorMessage(error: unknown) {
 
 const switchLocale = async (locale: AppLocale) => {
   await loadLocale(locale)
+  localeMenuOpen.value = false
+}
+
+const activeLocaleLabel = computed(() =>
+  localeOptions.value.find((locale) => locale.code === currentLocale.value)?.label
+  ?? currentLocale.value
+)
+
+const toggleLocaleMenu = () => {
+  localeMenuOpen.value = !localeMenuOpen.value
+}
+
+function handleWindowPointerDown(event: PointerEvent) {
+  if (!localeMenuOpen.value || !localeMenuRef.value) {
+    return
+  }
+
+  const target = event.target
+  if (target instanceof Node && !localeMenuRef.value.contains(target)) {
+    localeMenuOpen.value = false
+  }
+}
+
+function handleWindowKeyDown(event: KeyboardEvent) {
+  if (event.key === 'Escape') {
+    localeMenuOpen.value = false
+  }
 }
 
 useHead(() => ({
@@ -230,20 +270,50 @@ useHead(() => ({
             {{ t('app.hero.body') }}
           </p>
         </div>
-        <label class="field-shell min-w-[11rem]">
-          <span class="mb-2 block text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500">
+        <div ref="localeMenuRef" class="field-shell min-w-[11.5rem] self-start px-3 py-2.5">
+          <span class="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
             {{ t('component.locale.label') }}
           </span>
-          <select
-            :value="currentLocale"
-            class="text-field cursor-pointer"
-            @change="switchLocale(($event.target as HTMLSelectElement).value as AppLocale)"
-          >
-            <option v-for="locale in localeOptions" :key="locale.code" :value="locale.code">
-              {{ locale.label }}
-            </option>
-          </select>
-        </label>
+          <div class="relative">
+            <button
+              type="button"
+              class="locale-trigger"
+              :aria-expanded="localeMenuOpen"
+              aria-haspopup="listbox"
+              @click="toggleLocaleMenu"
+            >
+              <span class="truncate text-left">{{ activeLocaleLabel }}</span>
+              <span class="pointer-events-none flex items-center text-zinc-500">
+                <svg class="h-3.5 w-3.5 transition-transform duration-150" :class="localeMenuOpen ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </button>
+            <div
+              v-if="localeMenuOpen"
+              class="locale-menu"
+              role="listbox"
+              :aria-label="t('component.locale.label')"
+            >
+              <button
+                v-for="locale in localeOptions"
+                :key="locale.code"
+                type="button"
+                class="locale-option"
+                :class="locale.code === currentLocale ? 'locale-option-active' : ''"
+                :aria-selected="locale.code === currentLocale"
+                @click="switchLocale(locale.code)"
+              >
+                <span class="truncate">{{ locale.label }}</span>
+                <span v-if="locale.code === currentLocale" class="text-emerald-300">
+                  <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5.5 10.5L8.5 13.5L14.5 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
