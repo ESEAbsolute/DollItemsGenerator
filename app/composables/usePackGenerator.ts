@@ -588,10 +588,20 @@ function getOverrideModelCandidates(parsed: ParsedItemId) {
 }
 
 function getAppAssetUrl(path: string) {
-  const runtimeConfig = useRuntimeConfig()
-  const normalizedBase = runtimeConfig.app.baseURL.endsWith('/')
-    ? runtimeConfig.app.baseURL
-    : `${runtimeConfig.app.baseURL}/`
+  const normalizedBase = getResolvedBaseUrl()
   const normalizedPath = path.startsWith('/') ? path.slice(1) : path
   return `${normalizedBase}${normalizedPath}`
+}
+
+function getResolvedBaseUrl() {
+  let baseURL = '/'
+
+  if (typeof useRuntimeConfig !== 'undefined') {
+    const runtimeConfig = useRuntimeConfig()
+    baseURL = runtimeConfig.app.baseURL || '/'
+  } else if (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) {
+    baseURL = import.meta.env.BASE_URL
+  }
+
+  return baseURL.endsWith('/') ? baseURL : `${baseURL}/`
 }
