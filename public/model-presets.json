@@ -97,18 +97,18 @@
         "cases": [
           {
             "when": [
-              "firstperson_lefthand",
-              "thirdperson_lefthand"
+              "firstperson_righthand",
+              "thirdperson_righthand"
             ],
             "model": {
               "type": "minecraft:model",
-              "model": "playerdollitems:item/{{namespace}}/{{key}}/offhand"
+              "model": "playerdollitems:item/{{namespace}}/{{key}}/mainhand"
             }
           }
         ],
         "fallback": {
           "type": "minecraft:model",
-          "model": "playerdollitems:item/{{namespace}}/{{key}}/mainhand"
+          "model": "playerdollitems:item/{{namespace}}/{{key}}/offhand"
         }
       }
     },
