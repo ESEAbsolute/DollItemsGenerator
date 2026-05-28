@@ -11,6 +11,7 @@
 			"from": [4.5, 5, 6.75],
 			"to": [6.5, 7, 12.75],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 6, 11]},
+			"color": 3,
 			"faces": {
 				"north": {"uv": [10, 12, 11, 13], "texture": "#missing"},
 				"east": {"uv": [8, 16, 9, 13], "rotation": 90, "texture": "#missing"},
@@ -24,6 +25,7 @@
 			"from": [4.4, 4.9, 6.65],
 			"to": [6.6, 7.1, 12.85],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 6, 11]},
+			"color": 5,
 			"faces": {
 				"north": {"uv": [14, 12, 15, 13], "texture": "#missing"},
 				"east": {"uv": [12, 16, 13, 13], "rotation": 90, "texture": "#missing"},
@@ -37,6 +39,7 @@
 			"from": [9.5, 5, 6.75],
 			"to": [11.5, 7, 12.75],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 6, 11]},
+			"color": 8,
 			"faces": {
 				"north": {"uv": [12, 4, 13, 5], "texture": "#missing"},
 				"east": {"uv": [10, 8, 11, 5], "rotation": 90, "texture": "#missing"},
@@ -50,6 +53,7 @@
 			"from": [9.4, 4.9, 6.65],
 			"to": [11.6, 7.1, 12.85],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 6, 11]},
+			"color": 8,
 			"faces": {
 				"north": {"uv": [12, 8, 13, 9], "texture": "#missing"},
 				"east": {"uv": [10, 12, 11, 9], "rotation": 90, "texture": "#missing"},
@@ -164,16 +168,16 @@
 			}
 		},
 		{
-			"from": [3.63685, 0.54504, 4.21475],
-			"to": [27.63685, 24.54504, 4.21475],
-			"rotation": {"x": 0, "y": 60, "z": 0, "origin": [15.63685, 12.54504, 2.21475]},
+			"from": [-11.63685, 0.54504, 4.21475],
+			"to": [12.36315, 24.54504, 4.21475],
+			"rotation": {"x": 0, "y": -60, "z": 0, "origin": [0.36315, 12.54504, 2.21475]},
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#layer0"},
+				"north": {"uv": [16, 0, 0, 16], "texture": "#layer0"},
 				"east": {"uv": [0, 0, 0, 3], "texture": "#layer0"},
-				"south": {"uv": [0, 0, 3, 3], "texture": "#layer0"},
+				"south": {"uv": [3, 0, 0, 3], "texture": "#layer0"},
 				"west": {"uv": [0, 0, 0, 3], "texture": "#layer0"},
-				"up": {"uv": [0, 0, 3, 0], "texture": "#layer0"},
-				"down": {"uv": [0, 0, 3, 0], "texture": "#layer0"}
+				"up": {"uv": [3, 0, 0, 0], "texture": "#layer0"},
+				"down": {"uv": [3, 0, 0, 0], "texture": "#layer0"}
 			}
 		}
 	],
@@ -204,8 +208,8 @@
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"gui": {
-			"rotation": [0, 120, 0],
-			"translation": [5.25, -3, 0],
+			"rotation": [0, -120, 0],
+			"translation": [-5.75, -3, 0],
 			"scale": [0.66667, 0.66667, 0.66667]
 		},
 		"fixed": {
