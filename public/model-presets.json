@@ -2,15 +2,85 @@
   "holding_item": {
     "declaration": {
       "model": {
-        "type": "minecraft:model",
-        "model": "playerdollitems:item/{{namespace}}/{{key}}"
+        "type": "minecraft:select",
+        "property": "minecraft:display_context",
+        "cases": [
+          {
+            "when": [
+              "gui"
+            ],
+            "model": {
+              "type": "minecraft:model",
+              "model": "playerdollitems:item/{{namespace}}/{{key}}/gui"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "playerdollitems:item/{{namespace}}/{{key}}/hand"
+        }
       }
     },
     "generation": [
       {
-        "path": "assets/playerdollitems/models/item/{{namespace}}/{{key}}.json",
+        "path": "assets/playerdollitems/models/item/{{namespace}}/{{key}}/gui.json",
         "content": {
-          "parent": "playerdollitems:template/{{skinType}}/{{templateType}}",
+          "parent": "playerdollitems:template/{{skinType}}/{{templateType}}/gui",
+          "textures": {
+            "skin": "playerdollitems:item/doll/{{skinType}}_{{assetStem}}",
+            "item": "{{namespace}}:item/{{key}}"
+          }
+        }
+      },
+      {
+        "path": "assets/playerdollitems/models/item/{{namespace}}/{{key}}/hand.json",
+        "content": {
+          "parent": "playerdollitems:template/{{skinType}}/{{templateType}}/hand",
+          "textures": {
+            "skin": "playerdollitems:item/doll/{{skinType}}_{{assetStem}}",
+            "item": "{{namespace}}:item/{{key}}"
+          }
+        }
+      }
+    ]
+  },
+  "holding_item_reversed": {
+    "declaration": {
+      "model": {
+        "type": "minecraft:select",
+        "property": "minecraft:display_context",
+        "cases": [
+          {
+            "when": [
+              "gui"
+            ],
+            "model": {
+              "type": "minecraft:model",
+              "model": "playerdollitems:item/{{namespace}}/{{key}}/gui"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "playerdollitems:item/{{namespace}}/{{key}}/hand"
+        }
+      }
+    },
+    "generation": [
+      {
+        "path": "assets/playerdollitems/models/item/{{namespace}}/{{key}}/gui.json",
+        "content": {
+          "parent": "playerdollitems:template/{{skinType}}/{{templateType}}/gui",
+          "textures": {
+            "skin": "playerdollitems:item/doll/{{skinType}}_{{assetStem}}",
+            "item": "{{namespace}}:item/{{key}}"
+          }
+        }
+      },
+      {
+        "path": "assets/playerdollitems/models/item/{{namespace}}/{{key}}/hand.json",
+        "content": {
+          "parent": "playerdollitems:template/{{skinType}}/{{templateType}}/hand",
           "textures": {
             "skin": "playerdollitems:item/doll/{{skinType}}_{{assetStem}}",
             "item": "{{namespace}}:item/{{key}}"

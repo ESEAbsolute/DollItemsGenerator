@@ -3,6 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "predev": "node scripts/generate-pack-template-manifest.mjs",
+    "prebuild": "node scripts/generate-pack-template-manifest.mjs",
+    "pregenerate": "node scripts/generate-pack-template-manifest.mjs",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",

@@ -5,6 +5,7 @@
 .nitro
 .cache
 dist
+public/pack_template/manifest.json
 
 # Node dependencies
 node_modules

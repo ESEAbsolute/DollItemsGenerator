@@ -1,4 +1,4 @@
-{	
+{
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"textures": {
@@ -179,20 +179,22 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"translation": [0, 0, -2],
+			"rotation": [0, 30, 0],
+			"translation": [0, 0, -0.5],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"thirdperson_lefthand": {
-			"translation": [0, 0, -2],
+			"rotation": [0, 30, 0],
+			"translation": [0, 0, -0.5],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"firstperson_righthand": {
-			"rotation": [0, 135, 0],
+			"rotation": [0, 30, 0],
 			"translation": [0, 3, 0],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 135, 0],
+			"rotation": [0, 30, 0],
 			"translation": [0, 3, 0],
 			"scale": [0.5, 0.5, 0.5]
 		},
@@ -202,32 +204,39 @@
 		},
 		"gui": {
 			"rotation": [15, 150, 0],
-			"scale": [0.7, 0.7, 0.7]
+			"scale": [0, 0, 0]
 		},
 		"fixed": {
 			"translation": [0, 0, -3]
+		},
+		"on_shelf": {
+			"rotation": [0, -180, 0]
 		}
 	},
 	"groups": [
 		{
 			"name": "root",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [
 				{
 					"name": "group",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [
 						{
 							"name": "group",
 							"origin": [0, 0, 0],
+							"scope": 0,
 							"color": 0,
 							"children": [0, 1]
 						},
 						{
 							"name": "group",
 							"origin": [0, 0, 0],
+							"scope": 0,
 							"color": 0,
 							"children": [2, 3]
 						},
@@ -237,24 +246,28 @@
 				{
 					"name": "group",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [5, 6]
 				},
 				{
 					"name": "group",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [7, 8]
 				},
 				{
 					"name": "group",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [9, 10]
 				},
 				{
 					"name": "group",
 					"origin": [0, 0, 0],
+					"scope": 0,
 					"color": 0,
 					"children": [11, 12]
 				}
