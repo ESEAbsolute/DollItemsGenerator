@@ -466,7 +466,7 @@ function isAcceptedFile(file: File, target: 'skin' | 'override') {
             class="fixed inset-0 z-[9998] flex items-center justify-center bg-black/75 p-4"
             @click.self="closePresetBubble"
           >
-            <div class="floating-bubble w-[min(32rem,88vw)]">
+            <div class="floating-bubble flex h-[80vh] w-[min(51.2rem,88vw)] flex-col">
               <div class="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
                 <div>
                   <p class="text-sm font-medium text-white">{{ t('component.row.model_preset.dialog_title') }}</p>
@@ -476,7 +476,7 @@ function isAcceptedFile(file: File, target: 'skin' | 'override') {
                   {{ t('component.common.close') }}
                 </button>
               </div>
-              <div class="max-h-80 space-y-3 overflow-y-auto p-4">
+              <div class="flex-1 space-y-3 overflow-y-auto p-4">
                 <button
                   v-for="preset in modelPresets"
                   :key="preset.id"
@@ -486,8 +486,14 @@ function isAcceptedFile(file: File, target: 'skin' | 'override') {
                   @click="emit('update:model-type', row.id, preset.id); closePresetBubble()"
                 >
                   <div class="min-w-0">
-                    <p class="text-sm font-medium text-zinc-100">{{ t(`model.type.${preset.id}`, preset.id) }}</p>
-                    <p class="mt-1 text-xs text-zinc-500">{{ preset.id }}</p>
+                    <p class="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">{{ preset.id }}</p>
+                    <p class="mt-1 text-base font-medium text-zinc-100">{{ t(`model.type.${preset.id}`, preset.id) }}</p>
+                    <p
+                      v-if="t(`model.type.${preset.id}.desc`, '')"
+                      class="mt-1 text-sm leading-6 text-zinc-400"
+                    >
+                      {{ t(`model.type.${preset.id}.desc`, '') }}
+                    </p>
                   </div>
                   <div class="flex h-20 w-28 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
                     <img

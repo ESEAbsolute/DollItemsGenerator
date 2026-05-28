@@ -42,6 +42,10 @@
   "component.common.save": "保存",
   "skin.type.steve": "粗壮模型（四格宽手臂）",
   "skin.type.alex": "纤细模型（三格宽手臂）",
-  "model.type.holding_item": "双手前举物品",
-  "model.type.hugging_tool": "抱住工具"
+  "model.type.holding_item": "双手前举物品（朝内）",
+  "model.type.holding_item.desc": "在第一人称视角中，玩家可以看到人偶抱住的物品。",
+  "model.type.holding_item_reversed": "双手前举物品（朝外）",
+  "model.type.holding_item_reversed.desc": "在第一人称视角中，玩家可以看到人偶的后脑勺。如果你有 locomotion 等可能会改变第一人称下物品渲染的模组，可以使用这个来让你看到人偶抱住的物品。",
+  "model.type.hugging_tool": "抱住工具",
+  "model.type.hugging_tool.desc": "适合让角色双臂环抱长条工具或武器的动作。抱住的位置是工具的中间偏下。"
 }

@@ -42,6 +42,10 @@
   "component.common.save": "Save",
   "skin.type.steve": "Classical Skin Model",
   "skin.type.alex": "Slim Skin Model",
-  "model.type.holding_item": "Holding Item",
-  "model.type.hugging_tool": "Hugging Tool"
+  "model.type.holding_item": "Holding Item (Facing Inward)",
+  "model.type.holding_item.desc": "In first-person view, the player can see the item being hugged by the doll.",
+  "model.type.holding_item_reversed": "Holding Item (Facing Outward)",
+  "model.type.holding_item_reversed.desc": "In first-person view, the player can see the back of the doll's head. If you use mods such as locomotion that may change first-person item rendering, this preset can help you see the item being hugged by the doll.",
+  "model.type.hugging_tool": "Hugging Tool",
+  "model.type.hugging_tool.desc": "Suitable for poses where the character hugs a long tool or weapon with both arms. The hugging position sits slightly below the middle of the tool."
 }
